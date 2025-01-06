@@ -34,6 +34,10 @@ const MotionSection = dynamic(() => import('framer-motion').then(mod => ({ defau
   ssr: false
 })
 
+const SecurityPortfolio = dynamic(() => import('./components/SecurityPortfolio').then(mod => ({ default: mod.SecurityPortfolio })), {
+  ssr: false
+})
+
 export default function Home() {
   const [showContact, setShowContact] = useState(false)
 
@@ -68,6 +72,14 @@ export default function Home() {
         transition={{ duration: 0.5, delay: 0.4 }}
       >
         <SecurityMetrics />
+      </MotionSection>
+      <MotionSection
+        id="portfolio"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        <SecurityPortfolio />
       </MotionSection>
 
       <MotionSection

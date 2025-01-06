@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { Shield, Lock, AlertCircle, HelpCircle, ChevronRight, Terminal } from "lucide-react"
+import { Shield, Lock, AlertCircle, HelpCircle, ChevronRight, Terminal, ChevronDown } from "lucide-react"
 import { useState } from "react"
 
 interface FAQ {
@@ -138,21 +138,37 @@ export const SecurityFAQ = () => {
                 onClick={() => setSelectedFAQ(faq)}
                 className={`relative group cursor-pointer p-4 rounded-xl transition-all duration-300 ${
                   selectedFAQ.question === faq.question
-                    ? 'bg-white dark:bg-gray-800 shadow-lg'
-                    : 'hover:bg-white/50 dark:hover:bg-gray-800/50'
+                    ? 'bg-white dark:bg-gray-800 shadow-lg ring-1 ring-emerald-500/20 dark:ring-emerald-400/20'
+                    : 'hover:bg-white/50 dark:hover:bg-gray-800/50 hover:shadow-md'
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`p-2 rounded-lg bg-${faq.color}-500/10 dark:bg-${faq.color}-400/10`}>
+                  <div className={`p-2 rounded-lg bg-${faq.color}-500/10 dark:bg-${faq.color}-400/10 
+                    ${selectedFAQ.question === faq.question ? 'ring-2 ring-' + faq.color + '-500/50' : ''}`}>
                     <faq.icon className={`w-5 h-5 text-${faq.color}-500 dark:text-${faq.color}-400`} />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex-1">
                     {faq.question}
                   </h3>
-                  <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
-                    selectedFAQ.question === faq.question ? 'rotate-90' : ''
-                  }`} />
+                  <div className={`p-1.5 rounded-full transition-all duration-300 ${
+                    selectedFAQ.question === faq.question 
+                      ? 'bg-emerald-500/10 dark:bg-emerald-400/10' 
+                      : 'bg-gray-100 dark:bg-gray-700'
+                  }`}>
+                    <ChevronDown 
+                      className={`w-5 h-5 transition-all duration-300 ease-in-out ${
+                        selectedFAQ.question === faq.question 
+                          ? 'rotate-[-90deg] text-emerald-500 dark:text-emerald-400' 
+                          : 'rotate-0 text-gray-400'
+                      }`} 
+                    />
+                  </div>
                 </div>
+                {/* Add subtle highlight effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r from-${faq.color}-500/5 to-transparent rounded-xl opacity-0 
+                  ${selectedFAQ.question === faq.question ? 'opacity-100' : 'group-hover:opacity-50'} 
+                  transition-opacity duration-300`} 
+                />
               </motion.div>
             ))}
           </div>
