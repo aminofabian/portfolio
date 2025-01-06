@@ -157,8 +157,8 @@ export const AuroraHero = () => {
                   
                   <div className="relative w-full h-full transform hover:scale-105 transition-transform duration-300">
                     <img
-                      src="https://thispersondoesnotexist.com/"
-                      alt="Your Name"
+                      src="/placeholder.jpeg"
+                      alt="John Doe"
                       className="w-full h-full object-cover shadow-2xl [clip-path:url(#cyber-shield)] border-4 border-white dark:border-gray-800"
                     />
                     
@@ -209,8 +209,10 @@ export const AuroraHero = () => {
                           <span className="text-sm"> Initializing security protocols...</span>
                         </div>
                         
-                        <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 glitch-text">
-                          <span className="block">[Your Name]</span>
+                        <div className="text-4xl sm:text-3xl lg:text-5xl font-bold mb-2">
+                          <span className="block bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                            John Doe
+                          </span>
                         </div>
                         
                         <div className="flex items-center text-blue-400 dark:text-blue-300 mb-2">

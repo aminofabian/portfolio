@@ -38,11 +38,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const toggleDarkMode = () => {
+    document.documentElement.classList.toggle('dark');
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${outfit.variable} font-outfit antialiased transition-colors duration-200`}>
         <ThemeProvider>
-          <div className="min-h-screen bg-white dark:bg-black">
+          <div className="min-h-screen bg-white dark:bg-gray-800">
             <Navbar />
             <CyberBackground />
             {children}
