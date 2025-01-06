@@ -3,13 +3,20 @@ import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import { SecurityJourney } from "./components/SecurityJourney";
 import { SecurityServices } from "./components/SecurityServices";
-import { SecurityProcess } from "./components/SecurityProcess";
+import SecurityProcess from "./components/SecurityProcess";
 import { SecurityFAQ } from "./components/SecurityFAQ";
 import { SecurityContact } from "./components/SecurityContact";
 import { SecurityFooter } from "./components/SecurityFooter";
 import { SecurityMetrics } from "./components/SecurityMetrics";
+import { useState } from "react";
 
 export default function Home() {
+  const [showContact, setShowContact] = useState(false)
+
+  const handleContactClick = () => {
+    setShowContact(true)
+  }
+
   return (
     <main className="bg-white dark:bg-black">
 
@@ -28,7 +35,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <SecurityProcess />
+        <SecurityProcess onContactClick={handleContactClick} />
       </motion.section>
 
       <motion.section
@@ -66,6 +73,8 @@ export default function Home() {
       >
         <SecurityContact />
       </motion.section>
+
+      {showContact && <SecurityContact onClose={() => setShowContact(false)} />}
 
       <SecurityFooter />
     </main>

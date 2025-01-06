@@ -11,7 +11,11 @@ interface FormState {
   [key: string]: string
 }
 
-export const SecurityContact = () => {
+interface SecurityContactProps {
+  onClose?: () => void;
+}
+
+export const SecurityContact = ({ onClose }: SecurityContactProps) => {
   const [formState, setFormState] = useState<FormState>({
     name: "",
     email: "",
