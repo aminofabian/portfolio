@@ -34,10 +34,10 @@ const WelcomePage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="relative min-h-screen pt-24 pb-16 overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
+      className="relative min-h-screen pt-24 pb-16 overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 border-2 border-emerald-500"
     >
       {timeLeft !== null && (
-        <div className="absolute top-4 right-4 font-mono text-lg text-emerald-500 dark:text-emerald-400 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-lg">
+        <div className="absolute top-4 right-4 font-mono text-lg text-emerald-500 dark:text-emerald-400 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full">
           Disappearing in: {(timeLeft / 1000).toFixed(3)}s
         </div>
       )}
