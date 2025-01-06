@@ -7,14 +7,15 @@ import SecurityTerminal from "./SecurityTerminal"
 
 const WelcomePage = () => {
   const [visible, setVisible] = useState(true)
-  const [timeLeft, setTimeLeft] = useState(200000) // 3 seconds in microseconds
+  const [timeLeft, setTimeLeft] = useState<number | null>(null)
 
   useEffect(() => {
-    if (!visible) return
-
+    // Initialize timer only on client side
+    setTimeLeft(200000)
+    
     const interval = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev <= 1000) {
+        if (!prev || prev <= 1000) {
           clearInterval(interval)
           setVisible(false)
           return 0
@@ -24,7 +25,7 @@ const WelcomePage = () => {
     }, 1)
 
     return () => clearInterval(interval)
-  }, [visible])
+  }, [])
 
   if (!visible) return null
 
@@ -36,9 +37,11 @@ const WelcomePage = () => {
       exit={{ opacity: 0 }}
       className="relative min-h-screen pt-24 pb-16 overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
     >
-      <div className="absolute top-4 right-4 font-mono text-lg text-emerald-500 dark:text-emerald-400 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-        Disappearing in: {(timeLeft / 1000).toFixed(3)}s
-      </div>
+      {timeLeft !== null && (
+        <div className="absolute top-4 right-4 font-mono text-lg text-emerald-500 dark:text-emerald-400 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-lg">
+          Disappearing in: {(timeLeft / 1000).toFixed(3)}s
+        </div>
+      )}
 
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" />
       
