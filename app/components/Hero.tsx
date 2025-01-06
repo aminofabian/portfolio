@@ -144,11 +144,11 @@ export const AuroraHero = () => {
                 <div className="p-4 font-mono">
                   <div className="text-4xl sm:text-3xl lg:text-5xl font-bold mb-2">
                     <span className="inline-block font-mono text-5xl text-emerald-50 bg-emerald-900 px-3 py-1 skew-x-[-6deg] border-l-4 border-emerald-400">
-                      Mikael K. Noland
+                      Hasan Haider 
                     </span>
                   </div>
                   <div className="text-2xl sm:text-3xl lg:text-4xl text-emerald-400 dark:text-emerald-300 font-semibold">
-                    Security Researcher
+                    Cybersecurity Expert and Software Engineer
                   </div>
                 </div>
               </div>
