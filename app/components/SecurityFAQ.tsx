@@ -62,7 +62,7 @@ const AnswerDisplay = ({ faq }: { faq: FAQ }) => (
       <div className="p-4 font-mono text-sm">
         <div className="flex items-center text-emerald-400 dark:text-emerald-300 mb-2">
           <Terminal className="w-4 h-4 mr-2" />
-          <span> {faq.code}</span>
+          <span>{"> "}{faq.code}</span>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Shield, Github, Linkedin, Mail, Terminal, Lock, Cpu, Code, ExternalLink } from "lucide-react"
 
 const MatrixBackground = () => (
-  <div className="absolute inset-0 overflow-hidden opacity-[0.03]">
+  <div className="absolute inset-0 overflow-hidden opacity-[0.02] pointer-events-none">
     {Array.from({ length: 25 }).map((_, i) => (
       <div
         key={i}
@@ -55,108 +55,129 @@ const links = [
 
 export const SecurityFooter = () => {
   return (
-    <footer className="relative bg-gray-900 text-gray-300">
+    <footer className="relative bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300">
       <MatrixBackground />
       
-      {/* Decorative Top Border */}
-      <div className="h-1 w-full bg-gradient-to-r from-emerald-500 via-blue-500 to-violet-500" />
+      {/* Enhanced Top Border */}
+      <div className="relative h-px w-full overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-blue-500 to-violet-500" />
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-blue-500 to-violet-500 blur-sm animate-pulse" />
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-50"
+          animate={{
+            x: ["100%", "-100%"],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 2,
+            ease: "linear",
+          }}
+        />
+      </div>
       
-      <div className="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Main Footer Content */}
+      <div className="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand Section */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center space-x-2 cursor-pointer"
+            >
               <Shield className="w-6 h-6 text-emerald-500" />
-              <span className="text-xl font-bold text-white">SecurePort</span>
-            </div>
-            <p className="text-sm text-gray-400">
+              <span className="text-xl font-bold bg-gradient-to-r from-emerald-500 via-blue-500 to-violet-500 text-transparent bg-clip-text">
+                SecurePort
+              </span>
+            </motion.div>
+            
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Securing digital assets with advanced cybersecurity solutions and expert consultation.
             </p>
+
             {/* Terminal-style Stats */}
-            <div className="bg-gray-800/50 rounded-lg p-4 font-mono text-sm">
-              <div className="flex items-center text-emerald-400">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-4 font-mono text-sm shadow-lg border border-gray-200/50 dark:border-gray-700/50 transition-colors duration-300">
+              <div className="flex items-center text-emerald-500 dark:text-emerald-400">
                 <Terminal className="w-4 h-4 mr-2" />
-                <span>$ system_status</span>
+                <span className="font-bold">$ system_status</span>
               </div>
-              <div className="mt-2 space-y-1 text-gray-400">
-                <div className="flex justify-between">
-                  <span>Uptime:</span>
-                  <span className="text-emerald-400">99.99%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Threats Blocked:</span>
-                  <span className="text-emerald-400">1.2M+</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Security Score:</span>
-                  <span className="text-emerald-400">A+</span>
-                </div>
+              <div className="mt-3 space-y-2 text-gray-600 dark:text-gray-400">
+                {[
+                  { label: "Uptime", value: "99.99%", icon: Lock },
+                  { label: "Threats Blocked", value: "1.2M+", icon: Shield },
+                  { label: "Security Score", value: "A+", icon: Cpu },
+                ].map(({ label, value, icon: Icon }) => (
+                  <motion.div 
+                    key={label}
+                    className="flex items-center justify-between group"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Icon className="w-3 h-3 text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors duration-300" />
+                      <span>{label}:</span>
+                    </div>
+                    <span className="text-emerald-500 dark:text-emerald-400 font-bold">{value}</span>
+                  </motion.div>
+                ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Links Sections */}
-          {links.map((section) => (
-            <div key={section.title}>
-              <h3 className="text-white font-semibold mb-4 flex items-center">
-                <Lock className="w-4 h-4 mr-2 text-emerald-500" />
+          {links.map((section, idx) => (
+            <motion.div
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="space-y-4"
+            >
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {section.title}
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {section.items.map((item) => (
-                  <li key={item.label}>
+                  <motion.li key={item.label} whileHover={{ x: 5 }}>
                     <a
                       href={item.href}
-                      className="text-gray-400 hover:text-emerald-400 transition-colors duration-200 flex items-center group"
+                      className="text-gray-600 dark:text-gray-400 hover:text-emerald-500 dark:hover:text-emerald-400 flex items-center gap-2 group transition-colors duration-300"
                     >
-                      <Code className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                      <Code className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {item.label}
                     </a>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            {/* Copyright */}
-            <div className="flex items-center space-x-2 text-sm text-gray-400">
-              <Cpu className="w-4 h-4" />
-              <span>© {new Date().getFullYear()} SecurePort. All rights reserved.</span>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex space-x-4">
+        {/* Bottom Section */}
+        <div className="mt-12 pt-8 border-t border-gray-200/10 dark:border-gray-700/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              © {new Date().getFullYear()} SecurePort. All rights reserved.
+            </p>
+            <div className="flex items-center space-x-4">
               {[
-                { icon: Github, href: "https://github.com", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:contact@example.com", label: "Email" }
+                { icon: Github, href: "#", label: "GitHub" },
+                { icon: Linkedin, href: "#", label: "LinkedIn" },
+                { icon: Mail, href: "#", label: "Email" },
               ].map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-gray-800 text-gray-400 hover:text-emerald-400 hover:bg-gray-700 transition-colors duration-200"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors duration-300"
+                  aria-label={social.label}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-4 h-4" />
                 </motion.a>
               ))}
-            </div>
-
-            {/* Security Badge */}
-            <div className="flex items-center space-x-2 text-sm">
-              <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 ring-1 ring-inset ring-emerald-500/20">
-                <Shield className="w-4 h-4 mr-1" />
-                Security Verified
-                <ExternalLink className="w-3 h-3 ml-1" />
-              </span>
             </div>
           </div>
         </div>
