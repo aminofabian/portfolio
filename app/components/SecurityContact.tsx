@@ -198,11 +198,11 @@ export const SecurityContact = () => {
                     className="mt-4 p-4 bg-gray-800 rounded-lg border border-gray-700"
                   >
                     <div className="font-mono text-sm text-emerald-400">
-                      > Message encrypted and sent successfully
+                      {"> "} Message encrypted and sent successfully
                       <br />
-                      > Connection established
+                      {"> "} Connection established
                       <br />
-                      > Awaiting response...
+                      {"> "} Awaiting response...
                     </div>
                   </motion.div>
                 )}
