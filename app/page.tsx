@@ -1,7 +1,6 @@
 "use client"
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import { AuroraHero } from "./components/Hero";
+import Navbar from "./components/Navbar";
 import { SecurityJourney } from "./components/SecurityJourney";
 import { SecurityServices } from "./components/SecurityServices";
 import { SecurityProcess } from "./components/SecurityProcess";
@@ -13,7 +12,6 @@ import { SecurityMetrics } from "./components/SecurityMetrics";
 export default function Home() {
   return (
     <main className="bg-white dark:bg-black">
-      <Navbar />
 
       <motion.section
         id="about"

@@ -78,6 +78,16 @@ const SocialLinks = () => (
 )
 
 export const AuroraHero = () => {
+  const [showContactForm, setShowContactForm] = useState(false)
+
+  const handleEmailClick = () => {
+    setShowContactForm(true)
+  }
+
+  const handleCloseForm = () => {
+    setShowContactForm(false)
+  }
+
   return (
     <motion.section 
       id="home"
@@ -160,14 +170,62 @@ export const AuroraHero = () => {
       <SocialLinks />
 
       <div className="mt-8 text-center">
-        <a
-          href="/Content of pages.docx"
-          download="JoeDoe_Resume.docx"
-          className="inline-block px-6 py-3 text-lg font-medium text-white bg-emerald-500 rounded-full shadow-md hover:bg-emerald-600 transition-colors"
-        >
-          Download Resume
-        </a>
+        <div className="inline-flex space-x-0">
+          <a
+            href="/Content of pages.docx"
+            download="JoeDoe_Resume.docx"
+            className="parallelogram-button inline-block bg-emerald-500 text-white font-bold py-2 px-4 rounded-l-md shadow-md hover:bg-emerald-600 transition-colors"
+          >
+            <span>Download Resume</span>
+          </a>
+          <button
+            onClick={handleEmailClick}
+            className="parallelogram-button inline-block ml-3 bg-emerald-500 text-white font-bold py-2 px-4 rounded-r-md shadow-md hover:bg-emerald-600 transition-colors"
+          >
+            <span className="ml-3">Send Me an Email</span>
+          </button>
+        </div>
       </div>
+
+      {showContactForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Contact Me</h2>
+            <form>
+              <input
+                type="text"
+                placeholder="Name"
+                className="w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <textarea
+                placeholder="Message"
+                rows={4}
+                className="w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600"
+              ></textarea>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={handleCloseForm}
+                  className="mr-2 px-4 py-2 bg-gray-300 dark:bg-gray-600 rounded-md hover:bg-gray-400 dark:hover:bg-gray-500 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition-colors"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </motion.section>
   )
 }

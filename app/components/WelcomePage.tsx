@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import SocialLinks from "./Hero" // Assuming SocialLinks is a default export
+import SocialLinks from "./Hero" 
 import SecurityTerminal from "./SecurityTerminal"
 
 const WelcomePage = () => {
