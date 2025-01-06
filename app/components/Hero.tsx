@@ -4,13 +4,7 @@ import React, { useState, useEffect } from "react"
 import { motion, useAnimation, AnimatePresence } from "framer-motion"
 import dynamic from 'next/dynamic'
 import { ArrowRight, Github, Linkedin, Mail, Shield, Lock, Fingerprint, Terminal, ShieldAlert, Cpu, ShieldCheck, MessageSquareCode, Bug, Star } from "lucide-react"
-import { SecurityJourney } from "./SecurityJourney"
-import { SecurityServices } from "./SecurityServices"
-import { SecurityMetrics } from "./SecurityMetrics"
-import { SecurityProcess } from "./SecurityProcess"
-import { SecurityFAQ } from "./SecurityFAQ"
-import { SecurityContact } from "./SecurityContact"
-import { SecurityFooter } from "./SecurityFooter"
+
 
 const ThreeCanvas = dynamic(() => import('./ThreeCanvas'), {
   ssr: false,
