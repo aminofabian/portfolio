@@ -201,6 +201,16 @@ export const SecurityJourney = () => {
           >
             Security Evolution Timeline
           </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-4 text-lg text-gray-600 dark:text-gray-400"
+          >
+            I'm a student, a cybersecurity enthusiast, and a software engineer, passionate about exploring the depths of cybersecurity and advancing my skills in this ever-evolving field.
+          </motion.p>
         </div>
 
         {/* Journey Grid */}

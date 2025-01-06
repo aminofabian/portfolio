@@ -4,6 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { CyberBackground } from "./components/CyberBackground";
 import Navbar from "./components/Navbar";
+import React from "react";
+import WelcomePage from "./components/WelcomePage";
+import AuroraHero from "./components/Hero";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -49,6 +52,8 @@ export default function RootLayout({
           <div className="min-h-screen bg-white dark:bg-gray-800">
             <Navbar />
             <CyberBackground />
+            <WelcomePage />
+            <AuroraHero />
             {children}
           </div>
         </ThemeProvider>

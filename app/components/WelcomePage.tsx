@@ -2,88 +2,29 @@
 
 import React, { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Shield, Bug, Star, Github, Linkedin, Mail, Instagram, Twitter } from "lucide-react"
+import SocialLinks from "./Hero" // Assuming SocialLinks is a default export
+import SecurityTerminal from "./SecurityTerminal"
 
-const SecurityTerminal = () => {
-  const [commands, setCommands] = useState<string[]>([])
-  const [currentCommand, setCurrentCommand] = useState("")
-  const possibleCommands = [
-    "initializing_security_protocols...",
-    "scanning_perimeter...",
-    "checking_vulnerabilities...",
-    "updating_firewall...",
-    "monitoring_network_traffic...",
-  ]
+const WelcomePage = () => {
+  const [visible, setVisible] = useState(true)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const newCommand = possibleCommands[Math.floor(Math.random() * possibleCommands.length)]
-      setCurrentCommand(newCommand)
-      setCommands(prev => [...prev.slice(-4), newCommand])
-    }, 2000)
+    const timer = setTimeout(() => {
+      setVisible(false)
+    }, 3000)
 
-    return () => clearInterval(interval)
+    return () => clearTimeout(timer)
   }, [])
 
-  return (
-    <div className="bg-gray-100/90 dark:bg-gray-900/90 rounded-lg p-4 font-mono text-sm text-emerald-500 dark:text-emerald-400 space-y-1">
-      {commands.map((cmd, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-2"
-        >
-          <span>$</span>
-          <span>{cmd}</span>
-        </motion.div>
-      ))}
-      <motion.div
-        className="flex items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1] }}
-        transition={{ duration: 1, repeat: Infinity }}
-      >
-        <span>$</span>
-        <span>{currentCommand}</span>
-        <span className="w-2 h-4 bg-emerald-400 animate-pulse" />
-      </motion.div>
-    </div>
-  )
-}
+  if (!visible) return null
 
-const SocialLinks = () => (
-  <div className="fixed bottom-8 right-8 z-50 flex flex-col items-center space-y-4">
-    {[
-      { icon: Github, href: "https://github.com/yourusername", label: "GitHub" },
-      { icon: Linkedin, href: "https://linkedin.com/in/yourusername", label: "LinkedIn" },
-      { icon: Mail, href: "mailto:your.email@example.com", label: "Email" },
-      { icon: Instagram, href: "https://instagram.com/yourusername", label: "Instagram" },
-      { icon: Twitter, href: "https://twitter.com/yourusername", label: "Twitter" },
-    ].map((social) => (
-      <motion.a
-        key={social.label}
-        href={social.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-3 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-lg hover:shadow-xl transition-shadow duration-300"
-        aria-label={social.label}
-        whileHover={{ scale: 1.2, rotate: 10 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <social.icon className="w-6 h-6" />
-      </motion.a>
-    ))}
-  </div>
-)
-
-export const AuroraHero = () => {
   return (
-    <motion.section 
-      id="home"
+    <motion.section
+      id="welcome"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="relative min-h-screen pt-32 pb-16 overflow-hidden"
+      exit={{ opacity: 0 }}
+      className="relative h-screen pt-32 pb-16 overflow-hidden bg-gray-50 dark:bg-gray-900"
     >
       <div className="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-8">
@@ -119,7 +60,7 @@ export const AuroraHero = () => {
             transition={{ delay: 0.2 }}
           >
             <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-emerald-500/10 text-emerald-500 dark:bg-emerald-400/10 dark:text-emerald-400 ring-1 ring-inset ring-emerald-500/20 dark:ring-emerald-400/20">
-              Cybersecurity Expert
+              Welcome to My Portfolio
             </span>
           </motion.div>
 
@@ -134,11 +75,8 @@ export const AuroraHero = () => {
                 <div className="p-4 font-mono">
                   <div className="text-4xl sm:text-3xl lg:text-5xl font-bold mb-2">
                     <span className="inline-block font-mono text-5xl text-emerald-50 bg-emerald-900 px-3 py-1 skew-x-[-6deg] border-l-4 border-emerald-400">
-                      Mikael K. Noland
+                      Welcome to My Portfolio Website
                     </span>
-                  </div>
-                  <div className="text-2xl sm:text-3xl lg:text-4xl text-emerald-400 dark:text-emerald-300 font-semibold">
-                    Security Researcher
                   </div>
                 </div>
               </div>
@@ -151,25 +89,13 @@ export const AuroraHero = () => {
             transition={{ delay: 0.4 }}
             className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300"
           >
-            Passionate about digital security with expertise in penetration testing, 
-            vulnerability assessment, and incident response. Currently focusing on 
-            cloud security and zero-trust architecture.
+            Welcome to my personal portfolio! I'm thrilled to share my journey and work with you. Dive into my projects and explore the world of cybersecurity and software engineering through my eyes.
           </motion.p>
         </div>
       </div>
       <SocialLinks />
-
-      <div className="mt-8 text-center">
-        <a
-          href="/Content of pages.docx"
-          download="JoeDoe_Resume.docx"
-          className="inline-block px-6 py-3 text-lg font-medium text-white bg-emerald-500 rounded-full shadow-md hover:bg-emerald-600 transition-colors"
-        >
-          Download Resume
-        </a>
-      </div>
     </motion.section>
   )
 }
 
-export default AuroraHero
+export default WelcomePage 

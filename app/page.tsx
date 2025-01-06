@@ -1,3 +1,5 @@
+"use client"
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import { AuroraHero } from "./components/Hero";
 import { SecurityJourney } from "./components/SecurityJourney";
@@ -11,34 +13,62 @@ import { SecurityMetrics } from "./components/SecurityMetrics";
 export default function Home() {
   return (
     <main className="bg-white dark:bg-black">
-      <section id="home">
-        <AuroraHero />
-      </section>
-      
-      <section id="about">
+      <Navbar />
+
+      <motion.section
+        id="about"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <SecurityJourney />
-      </section>
-      
-      <section id="skills">
+      </motion.section>
+
+      <motion.section
+        id="skills"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <SecurityProcess />
-      </section>
-      
-      <section id="projects">
+      </motion.section>
+
+      <motion.section
+        id="projects"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
         <SecurityMetrics />
-      </section>
-      
-      <section id="services">
+      </motion.section>
+
+      <motion.section
+        id="services"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
         <SecurityServices />
-      </section>
-      
-      <section id="faqs">
+      </motion.section>
+
+      <motion.section
+        id="faqs"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
+      >
         <SecurityFAQ />
-      </section>
-      
-      <section id="contact">
+      </motion.section>
+
+      <motion.section
+        id="contact"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1 }}
+      >
         <SecurityContact />
-      </section>
-      
+      </motion.section>
+
       <SecurityFooter />
     </main>
   );
